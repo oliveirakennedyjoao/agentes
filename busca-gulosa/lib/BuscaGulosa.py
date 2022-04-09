@@ -1,7 +1,7 @@
-from lib.NodeEstrela import NodeEstrela
+from lib.NodeBuscaGulosa import NodeBuscaGulosa
 from lib.ParisMetroMap import ParisMetroMap
 
-class Aestrela:
+class BuscaGulosa:
     def __init__(self):
         self.listaAberta = []
         self.listaFechada = []
@@ -21,10 +21,10 @@ class Aestrela:
         
         ## Cria um noEstrela a partir do ID do no de origem
 
-        currentNode = NodeEstrela(originNodeID)
-        currentNode.custoHeuristico = 0
-        currentNode.custoDeChegada = 0
-        currentNode.custoTotal = 0
+        currentNode = NodeBuscaGulosa(originNodeID)
+        currentNode.custoHeuristico = 0             #   custo heurístico é o valor retornado pela função h
+        currentNode.custoDeChegada = 0              #   custo heurístico é o valor retornado pela função g
+        currentNode.custoTotal = 0                  #   custo total é o valor retornado pela função h
 
         self.listaAberta.append(currentNode)
 
@@ -41,8 +41,8 @@ class Aestrela:
             #    2 - Insere os vizinhoz na lista aberta;
 
             for boundaryID in self.PMM.getBoundaries(currentNode.ID):                
-                boundaryNode = NodeEstrela(boundaryID)
-                boundaryNode.custoHeuristico = self.PMM.getDistanceFromTo(currentNode.ID, boundaryID) 
+                boundaryNode = NodeBuscaGulosa(boundaryID)
+                boundaryNode.custoH = self.PMM.getDistanceFromTo(currentNode.ID, boundaryID) 
                 boundaryNode.custoTotal = currentNode.custoTotal + boundaryNode.custoHeuristico
                 boundaryNode.father = currentNode
 
@@ -67,7 +67,7 @@ class Aestrela:
                 return "There's no path"
 
     def originNode(self, nodeId):
-        return NodeEstrela(nodeId)
+        return NodeBuscaGulosa(nodeId)
 
     def pickNextNode(self):
         

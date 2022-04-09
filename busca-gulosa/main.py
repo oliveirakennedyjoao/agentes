@@ -1,10 +1,7 @@
-from lib.Aestrela import Aestrela
-from lib.ParisMetroMap import ParisMetroMap
 
-pathFinder = Aestrela()
+from lib.BuscaGulosa import BuscaGulosa
+pathFinder = BuscaGulosa()
 result = pathFinder.findPath('E7', 'E8')
-# print(result.father.ID)
-# print(result)
 
 reducer = result
 pathStack = []

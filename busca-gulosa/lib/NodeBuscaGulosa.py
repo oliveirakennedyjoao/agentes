@@ -1,4 +1,4 @@
-class NodeEstrela:
+class NodeBuscaGulosa:
     def __init__(self, ID):
         self.ID = ID
         self.father = None
