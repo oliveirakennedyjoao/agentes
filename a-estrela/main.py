@@ -1,8 +1,7 @@
 from lib.Aestrela import Aestrela
 
 pathfinder = Aestrela()
-result = pathfinder.findPath('E7', 'E8')
-# print(result)
+result = pathfinder.findPath('E10', 'E7')
 
 path = []
 node = result
