@@ -1,14 +1,13 @@
 
 import math
+import copy
 from lib.tabuleiro import *
 
-def hold():
-    math.inf
+def minimax(tabuleiro, player) -> int:
 
-def utilidade(tabuleiro: list):
     estado = testeTerminal(tabuleiro)
-    
-    if estado == None:
+
+    if estado == 'E':
         return 0
     
     if estado == 'P':
@@ -17,42 +16,22 @@ def utilidade(tabuleiro: list):
     if estado == 'V':
         return -1
     
-
-def minimax(tabuleiro, player) -> int:
-
-    for jogada in movimentosPossiveis():
-        tabuleiroResultadoJogada = tabuleiro.copy()
-        tabuleiroResultadoJogada[jogada[0]][jogada[1]] = player
-
-        estado = testeTerminal(tabuleiro)
-    
-        if estado == None:
-            minimax(tabuleiroResultadoJogada, 'V' if player == 'P' else 'V')
+    if estado == None:
+        utilidade = -1000
         
-        if estado == 'E':
-            return 0
+        for jogada in movimentosPossiveis(tabuleiro):
+            tabuleiroProjetado = copy.deepcopy(tabuleiro)
+            tabuleiroProjetado[jogada[0]][jogada[1]] = player
+            resultadoMinMax = minimax(tabuleiroProjetado, 'V' if player == 'V' else 'P')
+
+            if(player == 'V'):
+                if(resultadoMinMax < utilidade):
+                    utilidade = resultadoMinMax
+
+            if(player == 'P'):
+                if(resultadoMinMax > utilidade):
+                    utilidade = resultadoMinMax
         
-        if estado == 'P':
-            return 1
-        
-        if estado == 'V':
-            return -1
-
-def realizarMovimento(tabuleiro):
-    melhorJogada = None
-    valor = math.inf
-
-    for jogada in movimentosPossiveis():
-        tabuleiroResultadoJogada = tabuleiro.copy()
-        tabuleiroResultadoJogada[jogada[0]][jogada[1]] = 'P'
-
-        resultadoMinMax = minimax(tabuleiro, 'P')
-
-        if(valor < resultadoMinMax):
-            melhorJogada = tabuleiroResultadoJogada.copy()
-            valor = resultadoMinMax
-
-    return melhorJogada
-        
+        return utilidade
 
 

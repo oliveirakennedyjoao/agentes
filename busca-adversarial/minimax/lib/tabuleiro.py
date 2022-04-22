@@ -42,7 +42,10 @@ def testeTerminal(tabuleiro):
             diagonais = verificaDiagonal(matrizAvaliar)
             if diagonais != 0:
                 return diagonais
-            
+    
+    if gameOver(tabuleiro):
+        return 'E'
+    
     return None
 
 def gameOver(tabuleiro):

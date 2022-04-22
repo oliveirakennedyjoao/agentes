@@ -1,8 +1,9 @@
 import os
+import copy
 from lib.minimax import *
 from lib.tabuleiro import *
 
-tabuleiroInicial = [
+tabuleiro = [
     ['-', '-', '-', '-'],
     ['-', '-', '-', '-'],
     ['-', '-', '-', '-'],
@@ -10,34 +11,56 @@ tabuleiroInicial = [
 ]
 
 def playerJoga(tabuleiro):
-    
-    imprimirTabuleiro(tabuleiro)
-    
+
     colunaJogar = input("'V' joga: escolha uma coluna: ")
     jogadasPossiveis = movimentosPossiveis(tabuleiro)
-    
-    novoTabuleiro = tabuleiro.copy()
 
     for jogada in jogadasPossiveis:
         if jogada[1] == int(colunaJogar):        
-            novoTabuleiro[jogada[0]][jogada[1]] = 'V'
+            tabuleiro[jogada[0]][jogada[1]] = 'V'
     
     os.system('cls')
-    imprimirTabuleiro(novoTabuleiro)
-    return novoTabuleiro
+    print('YOU:')
+    imprimirTabuleiro(tabuleiro)
 
 def iaJoga(tabuleiro):
-    print('iaJogou')
-    os.system('cls')
+    #os.system('cls')
+
+    melhorJogada = None
+    utilidade = -1000
+
+    for jogada in movimentosPossiveis(tabuleiro):
+        tabuleiroResultadoJogada = copy.deepcopy(tabuleiro)
+        tabuleiroResultadoJogada[jogada[0]][jogada[1]] = 'P'
+
+        resultadoMinMax = minimax(tabuleiroResultadoJogada, 'V')
+        
+        # print(resultadoMinMax)
+
+        if(resultadoMinMax >= utilidade):
+            utilidade = resultadoMinMax
+            melhorJogada = jogada
+
+    tabuleiro[melhorJogada[0]][melhorJogada[1]] = 'P'
+    
+    print('IA:')
     imprimirTabuleiro(tabuleiro)
-    return tabuleiro
 
-tabuleiro = tabuleiroInicial
+def start():
+    imprimirTabuleiro(tabuleiro)
+    
+    while not gameOver(tabuleiro):
+    
+        playerJoga(tabuleiro)
 
-while not gameOver(tabuleiro):
-    tabuleiro = playerJoga(tabuleiro)
+        if gameOver(tabuleiro):
+            print ('Você venceu!')
+        else:
+            iaJoga(tabuleiro)
 
-    if gameOver(tabuleiro):
-        print ('Você venceu!')
-    else:
-        tabuleiro = iaJoga(tabuleiro)
+        estadoDoJogo = testeTerminal(tabuleiro)
+        if estadoDoJogo != None:
+            print(estadoDoJogo, 'Venceu!')
+            break
+
+start()
