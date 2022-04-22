@@ -24,8 +24,6 @@ def playerJoga(tabuleiro):
     imprimirTabuleiro(tabuleiro)
 
 def iaJoga(tabuleiro):
-    #os.system('cls')
-
     melhorJogada = None
     utilidade = -1000
 
@@ -34,8 +32,6 @@ def iaJoga(tabuleiro):
         tabuleiroResultadoJogada[jogada[0]][jogada[1]] = 'P'
 
         resultadoMinMax = minimax(tabuleiroResultadoJogada, 'V')
-        
-        # print(resultadoMinMax)
 
         if(resultadoMinMax >= utilidade):
             utilidade = resultadoMinMax
@@ -46,21 +42,29 @@ def iaJoga(tabuleiro):
     print('IA:')
     imprimirTabuleiro(tabuleiro)
 
+def verificarJogo():
+    if gameOver(tabuleiro):
+        print ('Fim de Jogo! Não há vencedor.')
+        return True
+    
+    estadoDoJogo = testeTerminal(tabuleiro)
+    if estadoDoJogo != None:
+        print(estadoDoJogo, 'Venceu!')
+        return True
+    
+    return False
+
 def start():
     imprimirTabuleiro(tabuleiro)
     
-    while not gameOver(tabuleiro):
+    isGameOver = False
     
+    while not isGameOver:
         playerJoga(tabuleiro)
-
-        if gameOver(tabuleiro):
-            print ('Você venceu!')
-        else:
-            iaJoga(tabuleiro)
-
-        estadoDoJogo = testeTerminal(tabuleiro)
-        if estadoDoJogo != None:
-            print(estadoDoJogo, 'Venceu!')
+        if verificarJogo():
+            break
+        iaJoga(tabuleiro)
+        if verificarJogo():
             break
 
 start()
