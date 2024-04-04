@@ -61,13 +61,13 @@ def get_possible_movements(state):
     j = blank_position % 3
     neighbors_positions = []
     if i > 0:
-        neighbors_positions.append(blank_position - 3)
+        neighbors_positions.append((blank_position - 3, "MOVER_PARA_CIMA"))
     if i < 2:
-        neighbors_positions.append(blank_position + 3)
+        neighbors_positions.append((blank_position + 3, "MOVER_PARA_BAIXO"))
     if j > 0:
-        neighbors_positions.append(blank_position - 1)
+        neighbors_positions.append((blank_position - 1, "MOVER_PARA_ESQUERDA"))
     if j < 2:
-        neighbors_positions.append(blank_position + 1)
+        neighbors_positions.append((blank_position + 1, "MOVER_PARA_DIREITA"))
     return neighbors_positions
 
 # give me a function that change the position of thwo elements in the state
@@ -86,7 +86,7 @@ def get_frontier_nodes(state: State, goal_state: list, possible_movements: list)
     neighbors_states = []
     for blank_possible_position in possible_movements:
         new_state = change_position(
-            state.state, blank_position, blank_possible_position)
+            state.state, blank_position, blank_possible_position[0])
         neighbors_states.append(
-            State(new_state, state, state.cost, distanceToGoal(new_state, goal_state)))
+            State(new_state, state, blank_possible_position[1], state.cost, distanceToGoal(new_state, goal_state)))
     return neighbors_states

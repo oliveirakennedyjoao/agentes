@@ -33,6 +33,8 @@ def astar_search(inintialState: State, goalState: list):
         if currentNode.state == goalState:
             print("\nGoal state found!\n")
             print(currentNode)
+            print("\nPath: \n")
+            print(currentNode.print_path())
             break
 
         # Gera os estados vizinhos, ou seja, os possíveis a partir do estado atual
@@ -41,9 +43,7 @@ def astar_search(inintialState: State, goalState: list):
 
         for node in frontierNodes:
             if node not in visitedStates:
-                # Verifica se o estado já está na fronteira
                 if node not in fronteira:
-                    # Adiciona o estado na fronteira
                     fronteira.append(node)
 
         fronteira.sort(key=lambda state: state.cost)
