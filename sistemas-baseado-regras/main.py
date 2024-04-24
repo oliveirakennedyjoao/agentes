@@ -5,9 +5,9 @@ from maquina_inferencia import MaquinaInferencia
 
 restaurante = Regra("regra_restaurante", regra_restaurante)
 fastfood = Regra("regra_fastfood", regra_fastfood)
-brasileiro = Regra("regra_brasileiro", regra_brasileiro)
-japones = Regra("regra_japones", regra_japones)
-italiano = Regra("regra_italiano", regra_italiano)
+brasileiro = Regra("regra_brasileiro", regra_brasileira)
+japones = Regra("regra_japones", regra_japonesa)
+italiano = Regra("regra_italiano", regra_italiana)
 hamburgueria = Regra("regra_hamburgueria", regra_hamburgueria)
 pizzaria = Regra("regra_pizzaria", regra_pizzaria)
 bodega_do_arthur = Regra("regra_bodega", regra_bodega)
@@ -51,9 +51,9 @@ base_conhecimento.adicionar_regra(pizza_hut)
 base_conhecimento.adicionar_regra(dominos)
 base_conhecimento.adicionar_regra(habibs)
 
-# fato = {"tempo": "demorado", "nacionalidade": "brasileiro", "preco": "alto"}
+fato = {"tempo": "longo", "tipo_de_comida": "carne", "preco": "alto"}
 # fato = {"tempo": "rapido", "compartilhar": "sim", "preco": "alto"}
-fato = {"tempo": "rapido", "preco": "alto"}
+# fato = {"tempo": "curto", "tipo_de_comida": "massa", "preco": "alto"}
 
 maquina_inferencia = MaquinaInferencia(base_conhecimento, max_iter=5)
 maquina_inferencia.executa(fato)

@@ -1,7 +1,7 @@
 def regra_restaurante(fato):
     try:
-        if fato["tempo"] == "demorado":
-            fato["Local"] = "restaurante"
+        if fato["tempo"] == "longo":
+            fato["estabelecimento"] = "restaurante"
             return True
     except:
         pass
@@ -10,38 +10,38 @@ def regra_restaurante(fato):
 
 def regra_fastfood(fato):
     try:
-        if fato["tempo"] == "rapido":
-            fato["Local"] = "fast_food"
+        if fato["tempo"] == "curto":
+            fato["estabelecimento"] = "fast_food"
             return True
     except:
         pass
     return False
 
 
-def regra_brasileiro(fato):
+def regra_brasileira(fato):
     try:
-        if fato["Local"] == "restaurante" and fato["estrangeiro"] == "nao":
-            fato["nacionalidade"] = "brasileiro"
+        if fato["estabelecimento"] == "restaurante" and fato["tipo_de_comida"] == "carne":
+            fato["cozinha"] = "brasileira"
             return True
     except:
         pass
     return False
 
 
-def regra_japones(fato):
+def regra_japonesa(fato):
     try:
-        if fato["Local"] == "restaurante" and fato["estrangeiro"] == "sim" and fato["continente"] == "asia":
-            fato["nacionalidade"] = "japones"
+        if fato["estabelecimento"] == "restaurante" and fato["tipo_de_comida"] == "sushi":
+            fato["cozinha"] = "japonesa"
             return True
     except:
         pass
     return False
 
 
-def regra_italiano(fato):
+def regra_italiana(fato):
     try:
-        if fato["Local"] == "restaurante" and fato["estrangeiro"] == "sim" and fato["continente"] == "europa":
-            fato["nacionalidade"] = "italiano"
+        if fato["estabelecimento"] == "restaurante" and fato["tipo_de_comida"] == "massa":
+            fato["cozinha"] = "italiana"
             return True
     except:
         pass
@@ -50,8 +50,8 @@ def regra_italiano(fato):
 
 def regra_hamburgueria(fato):
     try:
-        if fato["Local"] == "fast_food" and fato["compartilhar"] == "nao":
-            fato["tipo"] = "hamburgueria"
+        if fato["estabelecimento"] == "fast_food" and fato["tipo_de_comida"] == "carne":
+            fato["cozinha"] = "hamburgueria"
             return True
     except:
         pass
@@ -60,8 +60,8 @@ def regra_hamburgueria(fato):
 
 def regra_pizzaria(fato):
     try:
-        if fato["Local"] == "fast_food" and fato["compartilhar"] == "sim":
-            fato["tipo"] = "pizzaria"
+        if fato["estabelecimento"] == "fast_food" and fato["tipo_de_comida"] == "massa":
+            fato["cozinha"] = "pizzaria"
             return True
     except:
         pass
@@ -70,8 +70,8 @@ def regra_pizzaria(fato):
 
 def regra_bodega(fato):
     try:
-        if fato["nacionalidade"] == "brasileiro" and fato["preco"] == "baixo":
-            fato["estabelecimento"] = "bodega_do_arthur"
+        if fato["cozinha"] == "brasileira" and fato["preco"] == "baixo":
+            fato["local"] = "bodega_do_arthur"
             return True
     except:
         pass
@@ -80,8 +80,8 @@ def regra_bodega(fato):
 
 def regra_coco(fato):
     try:
-        if fato["nacionalidade"] == "brasileiro" and fato["preco"] == "medio":
-            fato["estabelecimento"] = "coco_bambu"
+        if fato["cozinha"] == "brasileira" and fato["preco"] == "medio":
+            fato["local"] = "coco_bambu"
             return True
     except:
         pass
@@ -90,8 +90,8 @@ def regra_coco(fato):
 
 def regra_spettus(fato):
     try:
-        if fato["nacionalidade"] == "brasileiro" and fato["preco"] == "alto":
-            fato["estabelecimento"] = "spettus"
+        if fato["cozinha"] == "brasileira" and fato["preco"] == "alto":
+            fato["local"] = "spettus"
             return True
     except:
         pass
@@ -100,8 +100,8 @@ def regra_spettus(fato):
 
 def regra_mazushi(fato):
     try:
-        if fato["nacionalidade"] == "japones" and fato["preco"] == "alto":
-            fato["estabelecimento"] = "mazushi"
+        if fato["cozinha"] == "japonesa" and fato["preco"] == "alto":
+            fato["local"] = "mazushi"
             return True
     except:
         pass
@@ -110,8 +110,8 @@ def regra_mazushi(fato):
 
 def regra_yugo(fato):
     try:
-        if fato["nacionalidade"] == "japones" and fato["preco"] == "medio":
-            fato["estabelecimento"] = "yugo"
+        if fato["cozinha"] == "japonesa" and fato["preco"] == "medio":
+            fato["local"] = "yugo"
             return True
     except:
         pass
@@ -120,8 +120,8 @@ def regra_yugo(fato):
 
 def regra_hashimoto(fato):
     try:
-        if fato["nacionalidade"] == "japones" and fato["preco"] == "baixo":
-            fato["estabelecimento"] = "hashimoto"
+        if fato["cozinha"] == "japonesa" and fato["preco"] == "baixo":
+            fato["local"] = "hashimoto"
             return True
     except:
         pass
@@ -130,8 +130,8 @@ def regra_hashimoto(fato):
 
 def regra_furetti(fato):
     try:
-        if fato["nacionalidade"] == "italiano" and fato["preco"] == "alto":
-            fato["estabelecimento"] = "furetti"
+        if fato["cozinha"] == "italiana" and fato["preco"] == "alto":
+            fato["local"] = "furetti"
             return True
     except:
         pass
@@ -140,8 +140,8 @@ def regra_furetti(fato):
 
 def regra_trattoria(fato):
     try:
-        if fato["nacionalidade"] == "italiano" and fato["preco"] == "medio":
-            fato["estabelecimento"] = "la_trattoria"
+        if fato["cozinha"] == "italiana" and fato["preco"] == "medio":
+            fato["local"] = "la_trattoria"
             return True
     except:
         pass
@@ -150,8 +150,8 @@ def regra_trattoria(fato):
 
 def regra_famiglialucco(fato):
     try:
-        if fato["nacionalidade"] == "italiano" and fato["preco"] == "baixo":
-            fato["estabelecimento"] = "famiglia_lucco"
+        if fato["cozinha"] == "italiana" and fato["preco"] == "baixo":
+            fato["local"] = "famiglia_lucco"
             return True
     except:
         pass
@@ -160,8 +160,8 @@ def regra_famiglialucco(fato):
 
 def regra_burger(fato):
     try:
-        if fato["tipo"] == "hamburgueria" and fato["preco"] == "alto":
-            fato["estabelecimento"] = "burger_king"
+        if fato["cozinha"] == "hamburgueria" and fato["preco"] == "alto":
+            fato["local"] = "burger_king"
             return True
     except:
         pass
@@ -170,8 +170,8 @@ def regra_burger(fato):
 
 def regra_mcdonalds(fato):
     try:
-        if fato["tipo"] == "hamburgueria" and fato["preco"] == "medio":
-            fato["estabelecimento"] = "mcdonalds"
+        if fato["cozinha"] == "hamburgueria" and fato["preco"] == "medio":
+            fato["local"] = "mcdonalds"
             return True
     except:
         pass
@@ -180,8 +180,8 @@ def regra_mcdonalds(fato):
 
 def regra_bobs(fato):
     try:
-        if fato["tipo"] == "hamburgueria" and fato["preco"] == "baixo":
-            fato["estabelecimento"] = "bobs"
+        if fato["cozinha"] == "hamburgueria" and fato["preco"] == "baixo":
+            fato["local"] = "bobs"
             return True
     except:
         pass
@@ -190,8 +190,8 @@ def regra_bobs(fato):
 
 def regra_pizzahut(fato):
     try:
-        if fato["tipo"] == "pizzaria" and fato["preco"] == "alto":
-            fato["estabelecimento"] = "pizza_hut"
+        if fato["cozinha"] == "pizzaria" and fato["preco"] == "alto":
+            fato["local"] = "pizza_hut"
             return True
     except:
         pass
@@ -200,8 +200,8 @@ def regra_pizzahut(fato):
 
 def regra_dominos(fato):
     try:
-        if fato["tipo"] == "pizzaria" and fato["preco"] == "medio":
-            fato["estabelecimento"] = "dominos"
+        if fato["cozinha"] == "pizzaria" and fato["preco"] == "medio":
+            fato["local"] = "dominos"
             return True
     except:
         pass
@@ -210,8 +210,8 @@ def regra_dominos(fato):
 
 def regra_habibs(fato):
     try:
-        if fato["tipo"] == "pizzaria" and fato["preco"] == "baixo":
-            fato["estabelecimento"] = "habibs"
+        if fato["cozinha"] == "pizzaria" and fato["preco"] == "baixo":
+            fato["local"] = "habibs"
             return True
     except:
         pass

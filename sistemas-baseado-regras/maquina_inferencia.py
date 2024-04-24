@@ -48,7 +48,9 @@ class MaquinaInferencia:
             # Checa se o conjunto de conflito está vazio
             # Se estiver vazio, finaliza a execução do algoritmo
             if not self.conjunto_conflito:
-                print("Conjunto de conflito está vazio, finalizando o algoritmo...")
+                # print("Conjunto de conflito está vazio, finalizando o algoritmo...")
+                print("\nLugar sugerido: ", self.memoria_trabalho["local"])
+                print("\nFinalizando o algoritmo...")
                 break
 
             # Seleciona a primeira regra que restou do conjunto
