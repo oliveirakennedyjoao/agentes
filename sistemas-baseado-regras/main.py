@@ -51,9 +51,10 @@ base_conhecimento.adicionar_regra(pizza_hut)
 base_conhecimento.adicionar_regra(dominos)
 base_conhecimento.adicionar_regra(habibs)
 
-fato = {"tempo": "longo", "tipo_de_comida": "carne", "preco": "alto"}
-# fato = {"tempo": "rapido", "compartilhar": "sim", "preco": "alto"}
-# fato = {"tempo": "curto", "tipo_de_comida": "massa", "preco": "alto"}
+# fato = {"tempo": "longo", "tipo_de_comida": "carne", "preco": "medio"}
+# fato = {"tipo_de_comida": "sushi", "tempo": "curto", "preco": "alto"}
+fato = {"tipo_de_comida": "sushi", "tempo": "curto",
+        "tempo": "longo", "preco": "alto"}
 
 maquina_inferencia = MaquinaInferencia(base_conhecimento, max_iter=5)
 maquina_inferencia.executa(fato)
