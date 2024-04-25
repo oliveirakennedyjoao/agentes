@@ -53,8 +53,8 @@ base_conhecimento.adicionar_regra(habibs)
 
 # fato = {"tempo": "longo", "tipo_de_comida": "carne", "preco": "medio"}
 # fato = {"tipo_de_comida": "sushi", "tempo": "curto", "preco": "alto"}
-fato = {"tipo_de_comida": "sushi", "tempo": "curto",
-        "tempo": "longo", "preco": "alto"}
+fato = {"tipo_de_comida": "carne", "tempo": "curto", "tempo": "longo",
+        "preco": "alto"}
 
 maquina_inferencia = MaquinaInferencia(base_conhecimento, max_iter=5)
 maquina_inferencia.executa(fato)
